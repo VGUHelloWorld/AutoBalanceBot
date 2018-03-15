@@ -1,6 +1,19 @@
 # AutoBalanceBot
 An "Auto balancing robot" project using TM4C123G launchpad, MPU6050, L298N and DC encoder motors
 
+Coding convention
+-
+Variable name:
+	- Starting character -> Non-capital (ex: mySpeed)
+Function name:
+	- Starting character -> capital (ex: SpeedCalc)
+Constant name:
+	- All letters -> capital (ex: SET_SPEED)
+
+File name:
+	- All letters -> capital (ex: I2C.h, MPU6050.c) (except main.c & include.h)
+
+
 Modules included:
 -
 
