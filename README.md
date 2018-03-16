@@ -1,5 +1,5 @@
 # AutoBalanceBot
-A "Auto balancing robot" project using TM4C123G launchpad, MPU6050, L298N and DC encoder motors
+An "Auto balancing robot" project using TM4C123G launchpad, MPU6050, L298N and DC encoder motors
 
 ## Coding convention
 1. Variable name:
