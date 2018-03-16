@@ -10,7 +10,8 @@ An "Auto balancing robot" project using TM4C123G launchpad, MPU6050, L298N and D
    - All letters -> capital (ex: SET_SPEED)
 4. File name:
    - All letters -> capital (ex: I2C.h, MPU6050.c) (except main.c & include.h)
-
+5. Commenting:
+   - Function: [link1](http://www.edparrish.net/common/cppdoc.html#functioncomment), [link2](https://www.drupal.org/project/drupal/issues/711918).
 
 ## Modules included:
 1. MPU6050
