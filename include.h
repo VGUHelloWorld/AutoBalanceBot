@@ -41,7 +41,7 @@
 #include "inc/hw_types.h"
 
 // User libraries
-
+#include "I2C/I2C.h"
 
 
 #endif /* INCLUDE_H_ */
