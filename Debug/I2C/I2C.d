@@ -30,6 +30,7 @@ I2C/I2C.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_gpio.h
 I2C/I2C.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h
 I2C/I2C.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h
 I2C/I2C.obj: ../I2C/../I2C/I2C.h
+I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 
 ../I2C/I2C.c: 
 ../I2C/I2C.h: 
@@ -61,3 +62,4 @@ C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_gpio.h:
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_memmap.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h: 
 ../I2C/../I2C/I2C.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
