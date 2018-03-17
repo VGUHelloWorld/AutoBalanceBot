@@ -17,8 +17,8 @@
 #define I2C1
 #define FAST_MODE false
 
-void I2C_Config(void);
-void Write_bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t length, uint8_t *data);
-void Read_bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t length, uint8_t *data);
+extern void I2C_Config(void);
+extern void Write_bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t length, uint8_t *data);
+extern void Read_bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t length, uint8_t *data);
 
 #endif /* I2C_I2C_H_ */
