@@ -42,6 +42,11 @@
 
 // User libraries
 
+//For UART
+#include "UART/UART.h"
+#include "UART/ustdlib.h"
+#include "UART/uartstdio.h"
+#include "UART/ftoa.h"
 
 
 #endif /* INCLUDE_H_ */
