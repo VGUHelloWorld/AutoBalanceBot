@@ -14,6 +14,6 @@ double UART_Value_Stored[3];
 
 
 
-extern void UART_Config(uint8_t UART_module,uint16_t UART_Baurate);
-extern void UART_Bluetooth_Setup(uint8_t UARTmodule);
+extern void UART_Config(uint8_t UART_module,uint16_t UART_baurate);
+extern void UART_Bluetooth_Setup(uint8_t UARTmodule, uint16_t UART_baudrate);
 void UART_Bluetooth_Receive();

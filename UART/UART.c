@@ -82,15 +82,16 @@ void UART_Config(uint8_t UART_module, uint16_t UART_baudrate)
 /*
  * Configure for UART and bluetooth
  * Use for registering the Interrupt function when receiving bluetooth signal
- * @param UARTmodule
+ * @param UART_module
  *          0: module uart 0 (PA0-RX, PA1-TX)
  *          1: module uart 1 (PB0-RX, PB1-TX)
  *          2: module uart 2 (PD6-RX, PD7-TX)
+ * @param UART_baudrate: set baudrate for uart (default for HC05 and HC06 is 9600)
  * @return void
  */
-void UART_Bluetooth_Setup(uint8_t UARTmodule)
+void UART_Bluetooth_Setup(uint8_t UART_module, uint16_t UART_baudrate)
 {
-    UART_Config(UARTmodule,9600);
+    UART_Config(UART_module,UART_baudrate);
     UARTIntRegister(UART_BASE, &UART_Bluetooth_Receive);
     IntEnable(UART_INT);
     UARTIntEnable(UART_BASE, UART_INT_RX | UART_INT_RT); //interrupt enable when receive a signal or timeout a signal
@@ -98,7 +99,7 @@ void UART_Bluetooth_Setup(uint8_t UARTmodule)
 
 /*
  * Receive the signal sent from the serial terminal on the PC and then
- * transform it into the float number. After that, save them in the array (valueBuf)
+ * transform it into the float number. After that, save them in the array (UART_Value_Stored)
  * for further using.
  */
 void UART_Bluetooth_Receive()
@@ -109,8 +110,10 @@ void UART_Bluetooth_Receive()
     if (UART_Value_Count>2) UART_Value_Count=0;
     UART_Value_Stored[UART_Value_Count]=value;
     UART_Value_Count++;
+#ifdef DEBUG_UART
     char valueBuf[10];
     UARTprintf("%10s",ftoa(value, &valueBuf[0], 3));
+#endif
 }
 
 
