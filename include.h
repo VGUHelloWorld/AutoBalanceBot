@@ -42,6 +42,10 @@
 
 // User libraries
 #include "I2C/I2C.h"
+#include "UART/ustdlib.h"
+#include "UART/uartstdio.h"
+#include "UART/ftoa.h"
+#include "UART/UART.h"
 
 
 #endif /* INCLUDE_H_ */
