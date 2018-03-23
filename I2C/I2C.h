@@ -11,7 +11,7 @@
 #include "../include.h"
 #include <string.h>     // strcmp()
 
-extern void I2C_Config(const char* I2C_SELECT, bool FAST_MODE);
+extern void I2C_Config(const char* I2C_SELECT, bool en_Fast_Mode);
 extern void I2C_Write_bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t num, uint8_t *data);
 extern void I2C_Read_bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t num, uint8_t *data);
 

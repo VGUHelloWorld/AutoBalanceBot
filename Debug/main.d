@@ -31,6 +31,8 @@ main.obj: C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h
 main.obj: ../I2C/I2C.h
 main.obj: ../I2C/../include.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
+main.obj: ../MPU6050/MPU6050.h
+main.obj: ../TIMER/TIMER.h
 
 ../main.c: 
 ../include.h: 
@@ -63,3 +65,5 @@ C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h:
 ../I2C/I2C.h: 
 ../I2C/../include.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
+../MPU6050/MPU6050.h: 
+../TIMER/TIMER.h: 

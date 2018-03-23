@@ -113,4 +113,6 @@ PDE_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 I2C \
+MPU6050 \
+TIMER \
 
