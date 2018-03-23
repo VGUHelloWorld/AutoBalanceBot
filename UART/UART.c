@@ -38,7 +38,7 @@ uint8_t UART_Value_Count;
  *          0: module uart 0 (PA0-RX, PA1-TX)
  *          1: module uart 1 (PB0-RX, PB1-TX)
  *          2: module uart 2 (PD6-RX, PD7-TX)
- * @param <uint8_t> Baurate: Set the baurate for UART(usually 9600)
+ * @param <uint16_t> Baurate: Set the baurate for UART(usually 9600)
  * @return void
  *
  */
@@ -82,11 +82,11 @@ void UART_Config(uint8_t UART_module, uint16_t UART_baudrate)
 /*
  * Configure for UART and bluetooth
  * Use for registering the Interrupt function when receiving bluetooth signal
- * @param UART_module
+ * @param <uint8> UART_module
  *          0: module uart 0 (PA0-RX, PA1-TX)
  *          1: module uart 1 (PB0-RX, PB1-TX)
  *          2: module uart 2 (PD6-RX, PD7-TX)
- * @param UART_baudrate: set baudrate for uart (default for HC05 and HC06 is 9600)
+ * @param <uint16> UART_baudrate: set baudrate for uart (default for HC05 and HC06 is 9600)
  * @return void
  */
 void UART_Bluetooth_Setup(uint8_t UART_module, uint16_t UART_baudrate)
