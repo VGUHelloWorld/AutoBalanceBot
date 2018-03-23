@@ -18,10 +18,12 @@ static uint32_t GPIO_TX_PIN           = GPIO_PIN_1;
 static uint32_t UART_BASE             = UART0_BASE;
 static uint32_t UART_INT              = INT_UART0;
 
+/*Buffer and increment element declaration*/
+char UART_Buf_100_Char[100];
+uint8_t UART_Value_Count;
 
 
-
-/*Some UART function that can be used (must include the library uartstido.h and ustdilb.h
+/*Some UART function that can be used (must include the library uartstido.h and ustdilb.h)
  *
  * 1) UARTprintf(const char* pcString,.. ): Send a string through the UART
  * 2) UARTgets(char *pcBuff, uint32_t ui32Len): Get the string sent from UART and save it into the buffer UART gets
@@ -36,10 +38,11 @@ static uint32_t UART_INT              = INT_UART0;
  *          0: module uart 0 (PA0-RX, PA1-TX)
  *          1: module uart 1 (PB0-RX, PB1-TX)
  *          2: module uart 2 (PD6-RX, PD7-TX)
+ * @param <uint8_t> Baurate: Set the baurate for UART(usually 9600)
  * @return void
  *
  */
-void UART_Config(uint8_t UART_module)
+void UART_Config(uint8_t UART_module, uint16_t UART_baudrate)
 {
    if (UART_module==0)
    {
@@ -68,7 +71,7 @@ void UART_Config(uint8_t UART_module)
    }
 
    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIO);
-   UARTStdioConfig(UART_module, 9600, SysCtlClockGet());
+   UARTStdioConfig(UART_module, UART_baudrate, SysCtlClockGet());
    GPIOPinConfigure(GPIO_UART_RX);
    GPIOPinConfigure(GPIO_UART_TX);
    GPIOPinTypeUART(GPIO_UART_PORT, GPIO_RX_PIN|GPIO_TX_PIN);
@@ -79,15 +82,15 @@ void UART_Config(uint8_t UART_module)
 /*
  * Configure for UART and bluetooth
  * Use for registering the Interrupt function when receiving bluetooth signal
- * @param UARTmodule : the same as the UART_config's one.
+ * @param UARTmodule
+ *          0: module uart 0 (PA0-RX, PA1-TX)
+ *          1: module uart 1 (PB0-RX, PB1-TX)
+ *          2: module uart 2 (PD6-RX, PD7-TX)
  * @return void
  */
-
-UART_Value_Count=0;
-
 void UART_Bluetooth_Setup(uint8_t UARTmodule)
 {
-    UART_Config(UARTmodule);
+    UART_Config(UARTmodule,9600);
     UARTIntRegister(UART_BASE, &UART_Bluetooth_Receive);
     IntEnable(UART_INT);
     UARTIntEnable(UART_BASE, UART_INT_RX | UART_INT_RT); //interrupt enable when receive a signal or timeout a signal
@@ -98,12 +101,11 @@ void UART_Bluetooth_Setup(uint8_t UARTmodule)
  * transform it into the float number. After that, save them in the array (valueBuf)
  * for further using.
  */
-
 void UART_Bluetooth_Receive()
 {
     UARTIntClear(UART_BASE,UARTIntStatus(UART_BASE,true));
-    uint8_t strLength = UARTgets(&buffer[0], 100);
-    double value=atof(buffer);
+    uint8_t strLength = UARTgets(&UART_Buf_100_Char[0], 100);
+    double value=atof(UART_Buf_100_Char);
     if (UART_Value_Count>2) UART_Value_Count=0;
     UART_Value_Stored[UART_Value_Count]=value;
     UART_Value_Count++;
