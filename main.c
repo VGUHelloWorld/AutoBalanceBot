@@ -6,6 +6,7 @@
 
 #include "include.h"
 
+// System's frequency definition
 #define freq 50
 
 void main(void)
@@ -36,7 +37,7 @@ void main(void)
      */
     while(1)
     {
-        if (end_loop)
+        if (end_loop) // Check if loop_time is reached
         {
 
             end_loop = false;

@@ -8,11 +8,22 @@
 
 #include "TIMER.h"
 
+/*
+ * Interrupt handler
+ *      clear interrupt, set $end_loop value to 1
+ * @param none
+ * @return void
+ */
 static void TIMER_ISR(void) {
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     end_loop = true;
 }
 
+/*
+ * Configure TIMER for timing Program's main loop
+ * @param <double> $freq system's frequency
+ * @return void
+ */
 void TIMER_Config(double freq)
 {
     /*

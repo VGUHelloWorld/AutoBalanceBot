@@ -13,7 +13,25 @@ static double gyro_scale, accel_scale;
 static int32_t accel_x_calib, accel_y_calib, accel_z_calib;
 static int32_t gyro_x_calib, gyro_y_calib, gyro_z_calib;
 
-
+/*
+ * Configure MPU6050
+ * @param <uint8_t> $dev_addr address of the MPU6050 device to read from
+ *      0x68 normally
+ *      0x69 if AD0 is connected to VCC
+ * @param <uint8_t> $gyro_FS_SEL select gyroscope's full scale range
+ *      gyro_FS_SEL     Full scale range        LSB sensitivity
+ *          0           +- 250  deg/sec         131.0 LSB/deg/sec
+ *          1           +- 500  deg/sec         65.5  LSB/deg/sec
+ *          2           +- 1000 deg/sec         32.8  LSB/deg/sec
+ *          3           +- 2000 deg/sec         16.4  LSB/deg/sec
+ * @param <uint8_t> $accel_FS_SEL select accelerometer's full scale range
+ *      accel_FS_SEL        Full scale range        LSB sensitivity
+ *          0                   +- 2  g               16384 LSB/g
+ *          1                   +- 4  g               8192  LSB/g
+ *          2                   +- 8  g               4096  LSB/g
+ *          3                   +- 16 g               2048  LSB/g
+ * @return void
+ */
 void MPU6050_Config(uint8_t dev_addr, uint8_t gyro_FS_SEL, uint8_t accel_FS_SEL)
 {
     /*
@@ -70,6 +88,12 @@ void MPU6050_Config(uint8_t dev_addr, uint8_t gyro_FS_SEL, uint8_t accel_FS_SEL)
     I2C_Write_bytes(mpu6050_addr, CONFIG_ADDR, 2, MPU6050_Buf_14_uint8); // Write back from Buffer -> register
 }
 
+/*
+ * Read raw data from MPU6050
+ * @param <int16_t*> $accel_x, $accel_y, $accel_z, $gyro_x, $gyro_y, $gyro_z, $temp
+ *      pointers to storing variables after reading MPU6050's raw data
+ * @return void
+ */
 void MPU6050_Read_raw(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z,
                       int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z,
                       int16_t *temp)
@@ -87,7 +111,11 @@ void MPU6050_Read_raw(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z,
     *gyro_z = (MPU6050_Buf_14_uint8[12] << 8) | MPU6050_Buf_14_uint8[13];
 }
 
-
+/*
+ * Calibrate MPU6050: calculate the mean values of MPU6050's initial offsets
+ * @param <uint16_t> $num number of calibration using MPU6050_Read_raw()
+ * @return void
+ */
 void MPU6050_Calibrate(uint16_t num)
 {
     uint16_t i = 0;
@@ -115,7 +143,12 @@ void MPU6050_Calibrate(uint16_t num)
     gyro_z_calib  /= i;
 }
 
-
+/*
+ * Read raw data from MPU6050, subtracted by the measured initial offsets
+ * @param <int16_t*> $accel_x, $accel_y, $accel_z, $gyro_x, $gyro_y, $gyro_z, $temp
+ *      pointers to storing variables
+ * @return void
+ */
 void MPU6050_Read_raw_Calibrated(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z,
                                  int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z,
                                  int16_t *temp)
@@ -130,7 +163,15 @@ void MPU6050_Read_raw_Calibrated(int16_t *accel_x, int16_t *accel_y, int16_t *ac
     *gyro_z  -= gyro_z_calib;
 }
 
-
+/*
+ * Read calibrated raw data, calculate:
+ *      accel's readings in g
+ *      gyro's  readings in deg/sec
+ *      temp    reading  in celsius
+ * @param <double*> $accel_x_g, $accel_y_g, $accel_z_g, $gyro_x_deg, $gyro_y_deg, $gyro_z_deg, $temp_c
+ *      pointers to storing variables
+ * @return void
+ */
 void MPU6050_Read(double *accel_x_g, double *accel_y_g, double *accel_z_g,
                   double *gyro_x_deg, double *gyro_y_deg, double *gyro_z_deg,
                   double *temp_c)
@@ -156,7 +197,13 @@ void MPU6050_Read(double *accel_x_g, double *accel_y_g, double *accel_z_g,
     *temp_c = temp/340+36.35;
 }
 
-
+/*
+ * Read calibrated raw data, calculate pitch-roll-yaw angles
+ *      NOTE: output angles from this function haven't been fused
+ *            Thus, gyro will drift and accel is vulnerable to vibrations
+ * @param <double*> $gyro_pitch, $gyro_roll, $gyro_yaw, $accel_pitch, $accel_roll
+ * @return void
+ */
 void MPU6050_Read_Angle(double *gyro_pitch, double *gyro_roll, double *gyro_yaw,
                         double *accel_pitch, double * accel_roll)
 {
@@ -178,6 +225,13 @@ void MPU6050_Read_Angle(double *gyro_pitch, double *gyro_roll, double *gyro_yaw,
     *gyro_yaw   += (double)gyro_z / (gyro_scale * loop_time);
 }
 
+/*
+ * Read calibrated raw data, calculate accel & gyro angles, fused the two signals using Complementary filter
+ * @param <double*> $pitch, $roll, $yaw
+ *      pointers to storing variables
+ * @param <double> RCOMPLE_GAIN  the gain of complementary filter (how much gyro is trusted)
+ * @return void
+ */
 void MPU6050_Read_Comple_Angle(double *pitch, double *roll, double *yaw, double COMPLE_GAIN)
 {
     // Create temporary variable to store data read from MPU6050_Read_raw_Calibrated()

@@ -10,9 +10,17 @@
 
 #include "../include.h"
 
+/*
+ * Global variables:
+ *      @param <bool> $end_loop determine whether the loop_time is reached
+ *      @param <double> $loop_time time duration of the program's main loop in (seconds)
+ */
 bool end_loop;
 double loop_time;
 
+/*
+ * Function declaration(s)
+ */
 extern void TIMER_Config(double freq);
 
 
