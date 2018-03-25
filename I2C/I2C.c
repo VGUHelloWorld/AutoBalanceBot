@@ -23,11 +23,11 @@ static uint32_t I2C_BASE              = I2C0_BASE;
 /*
  * Configure selected I2C module
  * @param <const> <char*> I2C_SELECT for selecting I2C module
- * @param <bool> FAST_MODE enable/disable fast mode 400 Kbps
+ * @param <bool> en_Fast_Mode enable/disable fast mode 400 Kbps
  *      ex: I2C_Config("I2C0", true)  -> select module I2C0 & enable fast mode
  * @return void
  */
-void I2C_Config(const char* I2C_SELECT, bool FAST_MODE)
+void I2C_Config(const char* I2C_SELECT, bool en_Fast_Mode)
 {
     /*
      * Change I2C setup values to match with the selected I2C module
@@ -79,7 +79,7 @@ void I2C_Config(const char* I2C_SELECT, bool FAST_MODE)
     GPIOPinConfigure(GPIO_I2C_SDA);
     GPIOPinTypeI2C(GPIO_PORT, GPIO_SDA_PIN);
     GPIOPinTypeI2CSCL(GPIO_PORT, GPIO_SCL_PIN);
-    I2CMasterInitExpClk(I2C_BASE, SysCtlClockGet(), FAST_MODE);
+    I2CMasterInitExpClk(I2C_BASE, SysCtlClockGet(), en_Fast_Mode);
 }
 
 /*

@@ -42,6 +42,11 @@
 
 // User libraries
 #include "I2C/I2C.h"
+#include "MPU6050/MPU6050.h"
+#include "TIMER/TIMER.h"
+
+// User-defined constants
+#define M_PI 3.14159265358979323846
 
 
 #endif /* INCLUDE_H_ */
