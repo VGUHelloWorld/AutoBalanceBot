@@ -38,7 +38,7 @@ uint8_t UART_Value_Count;
  *          0: module uart 0 (PA0-RX, PA1-TX)
  *          1: module uart 1 (PB0-RX, PB1-TX)
  *          2: module uart 2 (PD6-RX, PD7-TX)
- * @param <uint16_t> Baurate: Set the baurate for UART(usually 9600)
+ * @param <uint16_t> UART_baudrate: Set the baudrate for UART(usually 9600)
  * @return void
  *
  */
