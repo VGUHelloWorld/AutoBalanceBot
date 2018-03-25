@@ -123,9 +123,9 @@ void MPU6050_Calibrate(uint16_t num)
     // Read num samples for each data & add to Calib variables
     for (i = 0; i < num; i++)
     {
-        MPU6050_Read_raw(&MPU6050_Buf_7_int16[0], &MPU6050_Buf_7_int16[1], &MPU6050_Buf_7_int16[2], // Accel_x_Calib, Accel_y_Calib, Accel_z_Calib
-                         &MPU6050_Buf_7_int16[3], &MPU6050_Buf_7_int16[4], &MPU6050_Buf_7_int16[5], // Gyro_x_Calib, Gyro_y_Calib, Gyro_z_Calib
-                         &MPU6050_Buf_7_int16[6]);                                                  // temp_Calib
+        MPU6050_Read_raw(&MPU6050_Buf_7_int16[0], &MPU6050_Buf_7_int16[1], &MPU6050_Buf_7_int16[2],
+                         &MPU6050_Buf_7_int16[3], &MPU6050_Buf_7_int16[4], &MPU6050_Buf_7_int16[5],
+                         &MPU6050_Buf_7_int16[6]);
         accel_x_calib += MPU6050_Buf_7_int16[0];
         accel_y_calib += MPU6050_Buf_7_int16[1];
         accel_z_calib += MPU6050_Buf_7_int16[2];
@@ -134,10 +134,11 @@ void MPU6050_Calibrate(uint16_t num)
         gyro_z_calib  += MPU6050_Buf_7_int16[5];
     }
 
-    //Divide the sum by num (num = number of samples taken)
+    // Divide the sum by num (num = number of samples taken)
+    // IMPORTANT: unlike others (Calibrated to 0), Accel_z_Calib is calibrated to 1g
     accel_x_calib /= i;
     accel_y_calib /= i;
-    accel_z_calib = abs(accel_z_calib / i) - accel_scale;          // IMPORTANT: unlike others (Calibrated to 0), Accel_z_Calib is calibrated to 1g
+    accel_z_calib = abs(accel_z_calib / i) - accel_scale;
     gyro_x_calib  /= i;
     gyro_y_calib  /= i;
     gyro_z_calib  /= i;
@@ -220,9 +221,9 @@ void MPU6050_Read_Angle(double *gyro_pitch, double *gyro_roll, double *gyro_yaw,
     *accel_roll  =  asin(accel_y/total_vector)*(180/(double)M_PI);
 
     // Integrate gyro values to find the moved angles
-    *gyro_pitch += (double)gyro_y / (gyro_scale * loop_time);    // divided by Gyro_scale to get (degree/second); multiplied by loop time = 4ms means divided by 50 Hz
-    *gyro_roll  += (double)gyro_x / (gyro_scale * loop_time);
-    *gyro_yaw   += (double)gyro_z / (gyro_scale * loop_time);
+    *gyro_pitch += ( (double)gyro_y / gyro_scale ) * loop_time;    // divided by Gyro_scale to get (degree/second)
+    *gyro_roll  += ( (double)gyro_x / gyro_scale ) * loop_time;    // multiplied by loop time to get angles in (degree)
+    *gyro_yaw   += ( (double)gyro_z / gyro_scale ) * loop_time;
 }
 
 /*
@@ -247,9 +248,9 @@ void MPU6050_Read_Comple_Angle(double *pitch, double *roll, double *yaw, double 
     double accel_roll  =  asin(accel_y/total_vector)*(180/(double)M_PI);
 
     // Add integrated Gyro's measurement to current Angles
-    *pitch += ( (float)gyro_y / (gyro_scale) ) * loop_time;
-    *roll  += ( (float)gyro_x / (gyro_scale) ) * loop_time;
-    *yaw   += ( (float)gyro_z / (gyro_scale) ) * loop_time;
+    *pitch += ( (double)gyro_y / (gyro_scale) ) * loop_time;
+    *roll  += ( (double)gyro_x / (gyro_scale) ) * loop_time;
+    *yaw   += ( (double)gyro_z / (gyro_scale) ) * loop_time;
 
     // Complementary fusion: fuse angle with accelerometer readings
     *pitch = COMPLE_GAIN*(*pitch) + (1-COMPLE_GAIN)*(accel_pitch);
