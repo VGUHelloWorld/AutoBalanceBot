@@ -112,7 +112,12 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+ABR_Control \
 I2C \
+MOTOR \
 MPU6050 \
+PID \
+PWM \
 TIMER \
+UART \
 
