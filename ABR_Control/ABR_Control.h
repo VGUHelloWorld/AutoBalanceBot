@@ -13,7 +13,7 @@
 struct PID anglePID;
 struct PID speedPID;
 
-#define angle_Kp 0
+#define angle_Kp 20
 #define angle_Kd 0
 #define angle_Ki 0
 #define angle_setPoint 0

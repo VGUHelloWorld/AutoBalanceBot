@@ -107,7 +107,11 @@ void UART_Bluetooth_Receive()
     UARTIntClear(UART_BASE,UARTIntStatus(UART_BASE,true));
     uint8_t strLength = UARTgets(&UART_Buf_100_Char[0], 100);
     double value=atof(UART_Buf_100_Char);
-    if (UART_Value_Count>2) UART_Value_Count=0;
+    if (UART_Value_Count>2)
+    {
+        PID_Update_Gain(&anglePID, UART_Value_Store[0], UART_Value_Store[1], UART_Value_Store[2]);
+        UART_Value_Count=0;
+    }
     UART_Value_Stored[UART_Value_Count]=value;
     UART_Value_Count++;
 #ifdef DEBUG_UART
