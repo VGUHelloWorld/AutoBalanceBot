@@ -42,6 +42,10 @@ MPU6050/MPU6050.obj: ../MPU6050/../UART/uartstdio.h
 MPU6050/MPU6050.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 MPU6050/MPU6050.obj: ../MPU6050/../UART/ftoa.h
 MPU6050/MPU6050.obj: ../MPU6050/../UART/UART.h
+MPU6050/MPU6050.obj: ../MPU6050/../PID/PID.h
+MPU6050/MPU6050.obj: ../MPU6050/../ABR_Control/ABR_Control.h
+MPU6050/MPU6050.obj: ../MPU6050/../PWM/PWM.h
+MPU6050/MPU6050.obj: ../MPU6050/../MOTOR/MOTOR.h
 
 ../MPU6050/MPU6050.c: 
 ../MPU6050/MPU6050.h: 
@@ -85,3 +89,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../MPU6050/../UART/ftoa.h: 
 ../MPU6050/../UART/UART.h: 
+../MPU6050/../PID/PID.h: 
+../MPU6050/../ABR_Control/ABR_Control.h: 
+../MPU6050/../PWM/PWM.h: 
+../MPU6050/../MOTOR/MOTOR.h: 

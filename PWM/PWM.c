@@ -1,87 +1,318 @@
 /*
  * PWM.c
  *
- *  Created on: Dec 23, 2017
- *      Author: quynh
+ *  Created on: Mar 26, 2018
+ *      Author: lamgiang
  */
 
-#include "../include.h"
 #include "PWM.h"
 
-/*1. set the system clock.. etc.
-* >> Enable the PWM Module in the System Control using SysCtlPeripheralEnable, Enable the corresponding GPIO's as well
-* >> Configure the GPIO to be PWM Pins
-* 2. set the PWM clock from the system clock; PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_1)
-* 4. configure The PWM generator; PWMGenConfigure(PWM0_BASE, PWM_GEN_1,PWM_GEN_MODE_NO_SYNC)
-* 5. set the period for the generator; PWMGenPeriodSet(PWM0_BASE, PWM_GEN_1, some unsigned long that is the period)
-* 6. enable PWM outputs; PWMOutputState(PWM0_BASE, PWM_OUT_n_BIT, TRUE) where n is 0-7
-* 7. set the pulse width; PWMPulseWidthSet(PWM0_BASE, PWM_OUT_2, unsigned long (ex. period/2))
-* 3. enable the PWM Generator; PWMGenEnable(PWM0_BASE, PWM_GEN_1)*/
+//Declaring Variables
+uint32_t period;
 
-/* Note: Must declare Sysctlper.. before using PWMclockset */
-static uint32_t Period;
-static uint8_t percentage = 0;
 
-void Config_PWM(void)
+//PB6_PB7
+static uint32_t SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOB;
+static uint32_t GPIO_PORT_BASE      = GPIO_PORTB_BASE;
+static uint32_t GPIO                = GPIO_PIN_6;
+static uint32_t SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+static uint32_t PWM_PIN             = GPIO_PB6_M0PWM0;
+static uint32_t PWM_BASE            = PWM0_BASE;
+static uint32_t GEN                 = PWM_GEN_0;
+static uint32_t PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+static uint32_t PWM_OUT             = PWM_OUT_0;
+static uint32_t PWM_BIT             = PWM_OUT_0_BIT;
+
+
+/*Chose whatever PWM pins you like:
+ *PB6, PB7, PB4, PB5, PE4, PE5, PC4, PC5,
+ *PD0, PD1, PF0, PF1, PF2, PF3
+ *@param<const char*> $PWM_PIN_SELECT using to define PWM Pins (Configuring)
+ *@return void
+ */
+
+
+void PWM_Pin_Define(const char* PWM_PIN_SELECT)
 {
-
-    Period= clock1 / 20000; //1s the system will provide "clock" hertz, but the pwm just use 20kHz => calculate the the period by doing the division
-
-
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    //GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0);
-    GPIOPinTypePWM(GPIO_PORTF_BASE, GPIO_PIN_0); //Declare that PF0 will be used as a PWM output
-
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM0); //Enable the PWM system 0
-    PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_1); //Set the clock of PWM to be the same with the system clock (div=1)
-
-    GPIOPinConfigure(GPIO_PF0_M0PWM0); //Set configure for pin PF1 as a PWM output (M0PW0)
-
-    PWMGenConfigure(PWM0_BASE,PWM_GEN_0,PWM_GEN_MODE_DOWN|PWM_GEN_MODE_NO_SYNC); //Config for Generator and choose mode count down
-    PWMGenPeriodSet(PWM0_BASE,PWM_GEN_0, Period); //Set the period for the PWM, for instance, after "Period" pulses of the clock, the PWM will count 1 period
-
-    PWMGenEnable(PWM0_BASE, PWM_GEN_0);
-
-}
-
-
-void Process_PWM(void) //Press button
-{
-    uint32_t duty=Period*percentage/100;
-    if (duty==0) PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, false); //turn off the led when duty=0
-    else
+    //Change PWM Pin
+    if (strcmp(PWM_PIN_SELECT, "PB6") == 0)
     {
-        PWMPulseWidthSet(PWM0_BASE, PWM_OUT_0, duty-1); //Set the width of the PWM, in here there is just 30%
-        PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, true );//enable the output of PWM, true is enable, false is close
-
+        //Leave as default
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PB7") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOB;
+        GPIO_PORT_BASE      = GPIO_PORTB_BASE;
+        GPIO                = GPIO_PIN_7;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PB7_M0PWM1;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_0;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PB4") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOB;
+        GPIO_PORT_BASE      = GPIO_PORTB_BASE;
+        GPIO                = GPIO_PIN_4;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PB4_M0PWM2;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_1;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PB5") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOB;
+        GPIO_PORT_BASE      = GPIO_PORTB_BASE;
+        GPIO                = GPIO_PIN_5;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PB5_M0PWM3;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_1;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PE4") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOE;
+        GPIO_PORT_BASE      = GPIO_PORTE_BASE;
+        GPIO                = GPIO_PIN_4;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PE4_M0PWM4;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_2;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PE5") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOE;
+        GPIO_PORT_BASE      = GPIO_PORTE_BASE;
+        GPIO                = GPIO_PIN_5;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PE5_M0PWM5;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_2;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PC4") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOC;
+        GPIO_PORT_BASE      = GPIO_PORTC_BASE;
+        GPIO                = GPIO_PIN_4;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PC4_M0PWM6;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_3;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PC5") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOC;
+        GPIO_PORT_BASE      = GPIO_PORTC_BASE;
+        GPIO                = GPIO_PIN_5;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM0;
+        PWM_PIN             = GPIO_PC5_M0PWM7;
+        PWM_BASE            = PWM0_BASE;
+        GEN                 = PWM_GEN_3;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PD0") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOD;
+        GPIO_PORT_BASE      = GPIO_PORTD_BASE;
+        GPIO                = GPIO_PIN_0;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM1;
+        PWM_PIN             = GPIO_PD0_M1PWM0;
+        PWM_BASE            = PWM1_BASE;
+        GEN                 = PWM_GEN_0;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PD1") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOD;
+        GPIO_PORT_BASE      = GPIO_PORTD_BASE;
+        GPIO                = GPIO_PIN_1;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM1;
+        PWM_PIN             = GPIO_PD1_M1PWM1;
+        PWM_BASE            = PWM1_BASE;
+        GEN                 = PWM_GEN_1;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF0") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOF;
+        GPIO_PORT_BASE      = GPIO_PORTF_BASE;
+        GPIO                = GPIO_PIN_0;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM1;
+        PWM_PIN             = GPIO_PF0_M1PWM4;
+        PWM_BASE            = PWM1_BASE;
+        GEN                 = PWM_GEN_2;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF1") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOF;
+        GPIO_PORT_BASE      = GPIO_PORTF_BASE;
+        GPIO                = GPIO_PIN_1;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM1;
+        PWM_PIN             = GPIO_PF1_M1PWM5;
+        PWM_BASE            = PWM1_BASE;
+        GEN                 = PWM_GEN_2;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF2") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOF;
+        GPIO_PORT_BASE      = GPIO_PORTF_BASE;
+        GPIO                = GPIO_PIN_2;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM1;
+        PWM_PIN             = GPIO_PF2_M1PWM6;
+        PWM_BASE            = PWM1_BASE;
+        GEN                 = PWM_GEN_3;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF3") == 0)
+    {
+        SYSCTL_PERIPH_GPIO  = SYSCTL_PERIPH_GPIOF;
+        GPIO_PORT_BASE      = GPIO_PORTF_BASE;
+        GPIO                = GPIO_PIN_3;
+        SYSCTL_PERIPH_PWM   = SYSCTL_PERIPH_PWM1;
+        PWM_PIN             = GPIO_PF3_M1PWM7;
+        PWM_BASE            = PWM1_BASE;
+        GEN                 = PWM_GEN_3;
+        PWM_MODE            = PWM_GEN_MODE_NO_SYNC;
     }
 }
 
-void Update_PWM(uint8_t *pPer) //transfer the value of the percentage to the PWM module
+/*
+ *@param<const char*> $PWM_PIN_SELECT using to define PWM Pins (PWM Putting)
+ *@return void
+ */
+void PWM_Out_Define(const char* PWM_PIN_SELECT)
 {
-    percentage=*pPer;
+    if (strcmp(PWM_PIN_SELECT, "PB6") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_0;
+        PWM_BIT             = PWM_OUT_0_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PB7") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_1;
+        PWM_BIT             = PWM_OUT_1_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PB4") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_2;
+        PWM_BIT             = PWM_OUT_2_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PB5") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_3;
+        PWM_BIT             = PWM_OUT_3_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PE4") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_4;
+        PWM_BIT             = PWM_OUT_4_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PE5") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_5;
+        PWM_BIT             = PWM_OUT_5_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PC4") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_6;
+        PWM_BIT             = PWM_OUT_6_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PC5") == 0)
+    {
+        PWM_BASE            = PWM0_BASE;
+        PWM_OUT             = PWM_OUT_7;
+        PWM_BIT             = PWM_OUT_7_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PD0") == 0)
+    {
+        PWM_BASE            = PWM1_BASE;
+        PWM_OUT             = PWM_OUT_0;
+        PWM_BIT             = PWM_OUT_0_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PD1") == 0)
+    {
+        PWM_BASE            = PWM1_BASE;
+        PWM_OUT             = PWM_OUT_1;
+        PWM_BIT             = PWM_OUT_1_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF0") == 0)
+    {
+        PWM_BASE            = PWM1_BASE;
+        PWM_OUT             = PWM_OUT_4;
+        PWM_BIT             = PWM_OUT_4_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF1") == 0)
+    {
+        PWM_BASE            = PWM1_BASE;
+        PWM_OUT             = PWM_OUT_5;
+        PWM_BIT             = PWM_OUT_5_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF2") == 0)
+    {
+        PWM_BASE            = PWM1_BASE;
+        PWM_OUT             = PWM_OUT_6;
+        PWM_BIT             = PWM_OUT_6_BIT;
+    }
+    else if (strcmp(PWM_PIN_SELECT, "PF3") == 0)
+    {
+        PWM_BASE            = PWM1_BASE;
+        PWM_OUT             = PWM_OUT_7;
+        PWM_BIT             = PWM_OUT_7_BIT;
+    }
+}
+
+/*
+ * @param<const char*> $frequency  <uint16_t> $frequency setting up PWM Pins
+ * Setting Input Frequency, Normally around 700
+ * (Frequency of Arduino is 490 or 980 Hz)
+ * @return void
+ */
+void PWM_Config(const char* PWM_PIN_SELECT, uint16_t frequency)
+{
+    PWM_Pin_Define(PWM_PIN_SELECT);
+    // Setting Period. Count in clock ticks
+    period = SysCtlClockGet()/frequency;
+
+    // General Configure
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIO);
+    GPIOPinTypePWM(GPIO_PORT_BASE, GPIO);
+
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_1);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM);
+
+    // Configure PWM Pins
+    GPIOPinConfigure(PWM_PIN);
+    PWMGenConfigure(PWM_BASE, GEN, PWM_GEN_MODE_DOWN | PWM_MODE);
+    PWMGenPeriodSet(PWM_BASE, GEN, period);
+    PWMGenEnable(PWM_BASE, GEN);
+}
+
+/*
+ * @param<const char*> $PWM_PIN_SELECT, <uint8_t> $percent
+ * @return void
+ */
+
+void PWM_Put(const char* PWM_PIN_SELECT, uint8_t percent)
+{
+    PWM_Out_Define(PWM_PIN_SELECT);
+    PWMPulseWidthSet(PWM_BASE,PWM_OUT, period*percent/100-1);
+    PWMOutputState(PWM_BASE, PWM_BIT, true); // true to enable the signal
 }
 
 
-
-
-
-
-
-/*void Process_PWM(void) //Light up and down
-{
-    if (percentage<100)
-    {
-        percentage+=1;
-        SysCtlDelay(clock/30);
-    }
-    else
-    {
-        percentage=0;
-        SysCtlDelay(clock/30);
-    }
-    uint32_t duty=Period*percentage/100-1;
-    PWMPulseWidthSet(PWM0_BASE, PWM_OUT_0, duty); //Set the width of the PWM, in here there is just 30%
-    PWMOutputState(PWM0_BASE, PWM_OUT_0_BIT, true );//enable the output of PWM, true is enable, false is close
-}*/
 

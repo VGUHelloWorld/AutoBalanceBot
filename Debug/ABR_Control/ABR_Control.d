@@ -42,6 +42,10 @@ ABR_Control/ABR_Control.obj: ../ABR_Control/../UART/uartstdio.h
 ABR_Control/ABR_Control.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 ABR_Control/ABR_Control.obj: ../ABR_Control/../UART/ftoa.h
 ABR_Control/ABR_Control.obj: ../ABR_Control/../UART/UART.h
+ABR_Control/ABR_Control.obj: ../ABR_Control/../PID/PID.h
+ABR_Control/ABR_Control.obj: ../ABR_Control/../ABR_Control/ABR_Control.h
+ABR_Control/ABR_Control.obj: ../ABR_Control/../PWM/PWM.h
+ABR_Control/ABR_Control.obj: ../ABR_Control/../MOTOR/MOTOR.h
 
 ../ABR_Control/ABR_Control.c: 
 ../ABR_Control/ABR_Control.h: 
@@ -85,3 +89,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../ABR_Control/../UART/ftoa.h: 
 ../ABR_Control/../UART/UART.h: 
+../ABR_Control/../PID/PID.h: 
+../ABR_Control/../ABR_Control/ABR_Control.h: 
+../ABR_Control/../PWM/PWM.h: 
+../ABR_Control/../MOTOR/MOTOR.h: 

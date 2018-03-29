@@ -42,6 +42,10 @@ MOTOR/MOTOR.obj: ../MOTOR/../UART/uartstdio.h
 MOTOR/MOTOR.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 MOTOR/MOTOR.obj: ../MOTOR/../UART/ftoa.h
 MOTOR/MOTOR.obj: ../MOTOR/../UART/UART.h
+MOTOR/MOTOR.obj: ../MOTOR/../PID/PID.h
+MOTOR/MOTOR.obj: ../MOTOR/../ABR_Control/ABR_Control.h
+MOTOR/MOTOR.obj: ../MOTOR/../PWM/PWM.h
+MOTOR/MOTOR.obj: ../MOTOR/../MOTOR/MOTOR.h
 
 ../MOTOR/MOTOR.c: 
 ../MOTOR/MOTOR.h: 
@@ -85,3 +89,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../MOTOR/../UART/ftoa.h: 
 ../MOTOR/../UART/UART.h: 
+../MOTOR/../PID/PID.h: 
+../MOTOR/../ABR_Control/ABR_Control.h: 
+../MOTOR/../PWM/PWM.h: 
+../MOTOR/../MOTOR/MOTOR.h: 

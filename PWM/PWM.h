@@ -1,8 +1,8 @@
-/*x
+/*
  * PWM.h
  *
- *  Created on: Dec 23, 2017
- *      Author: quynh
+ *  Created on: Mar 26, 2018
+ *      Author: lamgiang
  */
 
 #ifndef PWM_PWM_H_
@@ -11,9 +11,12 @@
 
 #include "../include.h"
 
-extern void Config_PWM(void);
-extern void Process_PWM(void);
-extern void Update_PWM(uint8_t *pPer);
+extern void PWM_Pin_Define(const char* PWM_PIN_SELECT);
+extern void PWM_Out_Define(const char* PWM_PIN_SELECT);
+extern void PWM_Config(const char* PWM_PIN_SELECT, uint16_t frequency);
+extern void PWM_Put(const char* PWM_PIN_SELECT, uint8_t percent);
+
+
 
 
 #endif /* PWM_PWM_H_ */

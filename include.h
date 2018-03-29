@@ -48,7 +48,10 @@
 #include "UART/uartstdio.h"
 #include "UART/ftoa.h"
 #include "UART/UART.h"
-
+#include "PID/PID.h"
+#include "ABR_Control/ABR_Control.h"
+#include "PWM/PWM.h"
+#include "MOTOR/MOTOR.h"
 // User-defined constants
 #define M_PI 3.14159265358979323846
 

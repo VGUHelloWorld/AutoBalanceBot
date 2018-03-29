@@ -1,6 +1,7 @@
 # FIXED
 
 PWM/PWM.obj: ../PWM/PWM.c
+PWM/PWM.obj: ../PWM/PWM.h
 PWM/PWM.obj: ../PWM/../include.h
 PWM/PWM.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdbool.h
 PWM/PWM.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdint.h
@@ -41,9 +42,13 @@ PWM/PWM.obj: ../PWM/../UART/uartstdio.h
 PWM/PWM.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 PWM/PWM.obj: ../PWM/../UART/ftoa.h
 PWM/PWM.obj: ../PWM/../UART/UART.h
-PWM/PWM.obj: ../PWM/PWM.h
+PWM/PWM.obj: ../PWM/../PID/PID.h
+PWM/PWM.obj: ../PWM/../ABR_Control/ABR_Control.h
+PWM/PWM.obj: ../PWM/../PWM/PWM.h
+PWM/PWM.obj: ../PWM/../MOTOR/MOTOR.h
 
 ../PWM/PWM.c: 
+../PWM/PWM.h: 
 ../PWM/../include.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdbool.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdint.h: 
@@ -84,4 +89,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../PWM/../UART/ftoa.h: 
 ../PWM/../UART/UART.h: 
-../PWM/PWM.h: 
+../PWM/../PID/PID.h: 
+../PWM/../ABR_Control/ABR_Control.h: 
+../PWM/../PWM/PWM.h: 
+../PWM/../MOTOR/MOTOR.h: 

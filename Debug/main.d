@@ -41,6 +41,10 @@ main.obj: ../UART/uartstdio.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 main.obj: ../UART/ftoa.h
 main.obj: ../UART/UART.h
+main.obj: ../PID/PID.h
+main.obj: ../ABR_Control/ABR_Control.h
+main.obj: ../PWM/PWM.h
+main.obj: ../MOTOR/MOTOR.h
 
 ../main.c: 
 ../include.h: 
@@ -83,3 +87,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../UART/ftoa.h: 
 ../UART/UART.h: 
+../PID/PID.h: 
+../ABR_Control/ABR_Control.h: 
+../PWM/PWM.h: 
+../MOTOR/MOTOR.h: 

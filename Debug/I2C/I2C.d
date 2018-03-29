@@ -41,6 +41,10 @@ I2C/I2C.obj: ../I2C/../UART/uartstdio.h
 I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 I2C/I2C.obj: ../I2C/../UART/ftoa.h
 I2C/I2C.obj: ../I2C/../UART/UART.h
+I2C/I2C.obj: ../I2C/../PID/PID.h
+I2C/I2C.obj: ../I2C/../ABR_Control/ABR_Control.h
+I2C/I2C.obj: ../I2C/../PWM/PWM.h
+I2C/I2C.obj: ../I2C/../MOTOR/MOTOR.h
 I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 
 ../I2C/I2C.c: 
@@ -84,4 +88,8 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../I2C/../UART/ftoa.h: 
 ../I2C/../UART/UART.h: 
+../I2C/../PID/PID.h: 
+../I2C/../ABR_Control/ABR_Control.h: 
+../I2C/../PWM/PWM.h: 
+../I2C/../MOTOR/MOTOR.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 

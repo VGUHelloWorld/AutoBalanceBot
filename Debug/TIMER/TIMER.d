@@ -42,6 +42,10 @@ TIMER/TIMER.obj: ../TIMER/../UART/uartstdio.h
 TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 TIMER/TIMER.obj: ../TIMER/../UART/ftoa.h
 TIMER/TIMER.obj: ../TIMER/../UART/UART.h
+TIMER/TIMER.obj: ../TIMER/../PID/PID.h
+TIMER/TIMER.obj: ../TIMER/../ABR_Control/ABR_Control.h
+TIMER/TIMER.obj: ../TIMER/../PWM/PWM.h
+TIMER/TIMER.obj: ../TIMER/../MOTOR/MOTOR.h
 
 ../TIMER/TIMER.c: 
 ../TIMER/TIMER.h: 
@@ -85,3 +89,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../TIMER/../UART/ftoa.h: 
 ../TIMER/../UART/UART.h: 
+../TIMER/../PID/PID.h: 
+../TIMER/../ABR_Control/ABR_Control.h: 
+../TIMER/../PWM/PWM.h: 
+../TIMER/../MOTOR/MOTOR.h: 

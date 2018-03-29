@@ -42,6 +42,10 @@ PID/PID.obj: ../PID/../UART/uartstdio.h
 PID/PID.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h
 PID/PID.obj: ../PID/../UART/ftoa.h
 PID/PID.obj: ../PID/../UART/UART.h
+PID/PID.obj: ../PID/../PID/PID.h
+PID/PID.obj: ../PID/../ABR_Control/ABR_Control.h
+PID/PID.obj: ../PID/../PWM/PWM.h
+PID/PID.obj: ../PID/../MOTOR/MOTOR.h
 
 ../PID/PID.c: 
 ../PID/PID.h: 
@@ -85,3 +89,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/abi_prefix.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdarg.h: 
 ../PID/../UART/ftoa.h: 
 ../PID/../UART/UART.h: 
+../PID/../PID/PID.h: 
+../PID/../ABR_Control/ABR_Control.h: 
+../PID/../PWM/PWM.h: 
+../PID/../MOTOR/MOTOR.h: 
