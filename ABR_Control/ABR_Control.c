@@ -18,6 +18,6 @@ void ABR_Control(double *angle)
 {
     double newAngleSetPoint= PID_Calculate(&speedPID, motorSpeed, speed_setPoint);
     motorSpeed=PID_Calculate(&anglePID, *angle, newAngleSetPoint);
-    Go_Motors(motorSpeed);
+    Motion_Control(motorSpeed,motorSpeed);
 }
 
