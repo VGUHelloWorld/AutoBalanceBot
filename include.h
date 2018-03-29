@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <math.h>
+#include "stdlib.h"
 
 // API driver library
 

@@ -9,6 +9,7 @@ I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/linkage.h
 I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/_defs.h
+I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdlib.h
 I2C/I2C.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/gpio.h
 I2C/I2C.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/can.h
 I2C/I2C.obj: C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/eeprom.h
@@ -56,6 +57,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/linkage.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/_defs.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdlib.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/gpio.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/can.h: 
 C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/eeprom.h: 
