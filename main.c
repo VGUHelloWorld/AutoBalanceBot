@@ -31,6 +31,7 @@ void main(void)
     MPU6050_Config(0x68, 1, 1);
     MPU6050_Calibrate(200);
     ABR_PID_Init();
+    Motor_Config(700);
 
     /*
      * Program's main loop
@@ -42,7 +43,7 @@ void main(void)
 
             end_loop = false;
             MPU6050_Read_Comple_Angle(&pitch, &roll, &yaw, 0.98);
-            ABR_Control(&roll);
+            ABR_Control(&pitch);
 
         } // end if(end_loop)
     } // end while(1)

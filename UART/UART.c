@@ -109,8 +109,9 @@ void UART_Bluetooth_Receive()
     double value=atof(UART_Buf_100_Char);
     if (UART_Value_Count>2)
     {
-        PID_Update_Gain(&anglePID, UART_Value_Store[0], UART_Value_Store[1], UART_Value_Store[2]);
+        PID_Update_Gain(&anglePID, UART_Value_Stored[0], UART_Value_Stored[1], UART_Value_Stored[2]);
         UART_Value_Count=0;
+        return;
     }
     UART_Value_Stored[UART_Value_Count]=value;
     UART_Value_Count++;
