@@ -36,11 +36,16 @@
 *.x86_64
 *.hex
 
+*.launch
+
 # Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
+
+*.xml
+*.opt
 
 # Kernel Module Compile Results
 *.mod*
