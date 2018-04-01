@@ -47,8 +47,10 @@
 *.xml
 *.opt
 
-# Setting files
-org.eclipse.core.resources.prefs
+# Debug & Setting folders
+.settings/
+Debug/
+targetConfigs/
 
 # Kernel Module Compile Results
 *.mod*
