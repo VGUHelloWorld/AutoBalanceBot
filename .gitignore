@@ -35,7 +35,6 @@
 *.i*86
 *.x86_64
 *.hex
-
 *.launch
 
 # Debug files
@@ -43,11 +42,11 @@
 *.su
 *.idb
 *.pdb
-
 *.xml
 *.opt
 
 # Debug & Setting folders
+.launches/
 .settings/
 Debug/
 targetConfigs/
