@@ -33,8 +33,6 @@ static uint32_t PWM_BIT             = PWM_OUT_0_BIT;
  *  @param <const char*> $PWM_PIN_SELECT used to define PWM Pins ( PWM_Config() )
  *  @return void
  */
-
-
 void PWM_Pin_Define(const char* PWM_PIN_SELECT)
 {
     //Change PWM Pin
@@ -313,7 +311,6 @@ void PWM_Config(const char* PWM_PIN_SELECT, uint16_t frequency)
  * @param <uint8_t>     $percent        (+) duty cycle in percentage
  * @return void
  */
-
 void PWM_Put(const char* PWM_PIN_SELECT, uint8_t percent)
 {
     PWM_Out_Define(PWM_PIN_SELECT);
