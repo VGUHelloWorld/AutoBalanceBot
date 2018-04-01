@@ -39,7 +39,7 @@ double PID_Calculate(struct PID *target, double newValue, double setValue)
 
     target->error= (target->setPoint-newValue);
     target->sumValue+=target->error*loop_time;
-    double speedofChange = target->error-target->lastError;
+    double speedofChange = (target->error-target->lastError)/loop_time;
 
     finalOutput=target->Kp*target->error + target->Kd*speedofChange + target->Ki*target->sumValue;
     target->lastError=target->error;
