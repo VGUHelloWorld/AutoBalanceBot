@@ -44,14 +44,18 @@
 #include "I2C/I2C.h"
 #include "MPU6050/MPU6050.h"
 #include "TIMER/TIMER.h"
-#include "UART/ustdlib.h"
-#include "UART/uartstdio.h"
-#include "UART/ftoa.h"
+
+#include "UART/ustdlib.h"   // For uartstdio.h
+#include "UART/uartstdio.h" // For UART.h
+#include "UART/ftoa.h"      // ftoa() to print number
+#include "stdlib.h"         // atof() to read number
 #include "UART/UART.h"
+
+#include "MOTOR/MOTOR.h"
+#include "PWM/PWM.h"
 
 // User-defined constants
 #define M_PI 3.14159265358979323846
-
 
 
 #endif /* INCLUDE_H_ */

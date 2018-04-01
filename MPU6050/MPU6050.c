@@ -138,7 +138,7 @@ void MPU6050_Calibrate(uint16_t num)
     // IMPORTANT: unlike others (Calibrated to 0), Accel_z_Calib is calibrated to 1g
     accel_x_calib /= i;
     accel_y_calib /= i;
-    accel_z_calib = abs(accel_z_calib / i) - accel_scale;
+    accel_z_calib  = accel_z_calib / i - (-accel_scale);
     gyro_x_calib  /= i;
     gyro_y_calib  /= i;
     gyro_z_calib  /= i;
@@ -217,8 +217,8 @@ void MPU6050_Read_Angle(double *gyro_pitch, double *gyro_roll, double *gyro_yaw,
 
     // Calculate Accel angles using asin function
     double total_vector = sqrt((double)accel_x*accel_x + (double)accel_y*accel_y + (double)accel_z*accel_z);
-    *accel_pitch = -asin(accel_x/total_vector)*(180/(double)M_PI);  // *180/M_PI to convert from rad to deg
-    *accel_roll  =  asin(accel_y/total_vector)*(180/(double)M_PI);
+    *accel_pitch =  asin((double)accel_x/total_vector)*(180.0f/(double)M_PI);  // *180/M_PI to convert from rad to deg
+    *accel_roll  = -asin((double)accel_y/total_vector)*(180.0f/(double)M_PI);
 
     // Integrate gyro values to find the moved angles
     *gyro_pitch += ( (double)gyro_y / gyro_scale ) * loop_time;    // divided by Gyro_scale to get (degree/second)
@@ -244,8 +244,8 @@ void MPU6050_Read_Comple_Angle(double *pitch, double *roll, double *yaw, double 
 
     // Calculate Accel angles using asin function
     double total_vector = sqrt((double)accel_x*accel_x + (double)accel_y*accel_y + (double)accel_z*accel_z);
-    double accel_pitch = -asin(accel_x/total_vector)*(180/(double)M_PI);  // *180/M_PI to convert from rad to deg
-    double accel_roll  =  asin(accel_y/total_vector)*(180/(double)M_PI);
+    double accel_pitch =  asin((double)accel_x/total_vector)*(180.0f/(double)M_PI);  // *180/M_PI to convert from rad to deg
+    double accel_roll  = -asin((double)accel_y/total_vector)*(180.0f/(double)M_PI);
 
     // Add integrated Gyro's measurement to current Angles
     *pitch += ( (double)gyro_y / (gyro_scale) ) * loop_time;
