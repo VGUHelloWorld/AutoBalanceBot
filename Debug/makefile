@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS
+CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -15,6 +15,10 @@ ORDERED_OBJS += \
 "./I2C/I2C.obj" \
 "./MPU6050/MPU6050.obj" \
 "./TIMER/TIMER.obj" \
+"./UART/UART.obj" \
+"./UART/ftoa.obj" \
+"./UART/uartstdio.obj" \
+"./UART/ustdlib.obj" \
 "C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/ccs/Debug/driverlib.lib" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -31,10 +35,12 @@ RMDIR := RMDIR /S/Q
 -include I2C/subdir_vars.mk
 -include MPU6050/subdir_vars.mk
 -include TIMER/subdir_vars.mk
+-include UART/subdir_vars.mk
 -include subdir_rules.mk
 -include I2C/subdir_rules.mk
 -include MPU6050/subdir_rules.mk
 -include TIMER/subdir_rules.mk
+-include UART/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -151,21 +157,21 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 AutoBalanceBot.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"AutoBalanceBot.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="AutoBalanceBot_linkInfo.xml" --rom_model -o "AutoBalanceBot.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"AutoBalanceBot.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="AutoBalanceBot_linkInfo.xml" --rom_model -o "AutoBalanceBot.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 AutoBalanceBot.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armhex"  -o "AutoBalanceBot.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/bin/armhex"  -o "AutoBalanceBot.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "I2C\I2C.obj" "MPU6050\MPU6050.obj" "TIMER\TIMER.obj" 
-	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "I2C\I2C.d" "MPU6050\MPU6050.d" "TIMER\TIMER.d" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "I2C\I2C.obj" "MPU6050\MPU6050.obj" "TIMER\TIMER.obj" "UART\UART.obj" "UART\ftoa.obj" "UART\uartstdio.obj" "UART\ustdlib.obj" 
+	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "I2C\I2C.d" "MPU6050\MPU6050.d" "TIMER\TIMER.d" "UART\UART.d" "UART\ftoa.d" "UART\uartstdio.d" "UART\ustdlib.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
