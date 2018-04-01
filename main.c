@@ -27,6 +27,7 @@ void main(void)
     SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
     // Modules configuration
     TIMER_Config(freq);
+    Motor_Config(700);
     I2C_Config("I2C1", false);
     MPU6050_Config(0x68, 1, 1);
     MPU6050_Calibrate(200);
@@ -41,6 +42,12 @@ void main(void)
         {
             end_loop = false;
             MPU6050_Read_Comple_Angle(&pitch, &roll, &yaw, 0.98);
+            if (pitch > (double)20)
+                Motion_Control(80, 80);
+            else if (pitch < (double)-20)
+                Motion_Control(-80, -80);
+            else
+                Motion_Control(0, 0);
 
         } // end if(end_loop)
     } // end while(1)
