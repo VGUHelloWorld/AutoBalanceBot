@@ -5,13 +5,13 @@
  *         - ftoa
  *         - uartstdio
  *         - ustdlib
+ *         - stdlib
  */
 
 #include "../include.h"
 
-/*The array stored temparory value sent sequently from the terminal (3 UART signal continuosly)*/
+/*The array to store value sent consecutively from the terminal (3 UART signal continuously)*/
 double UART_Value_Stored[3];
-
 
 
 extern void UART_Config(uint8_t UART_module,uint16_t UART_baurate);

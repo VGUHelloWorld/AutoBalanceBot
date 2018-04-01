@@ -113,6 +113,9 @@ PDE_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 I2C \
+MOTOR \
 MPU6050 \
+PWM \
 TIMER \
+UART \
 

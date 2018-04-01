@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v16.9.7                     
 ******************************************************************************
->> Linked Sun Mar 25 09:26:33 2018
+>> Linked Sun Apr 01 10:41:16 2018
 
 OUTPUT FILE NAME:   <AutoBalanceBot.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00001eed
@@ -249,11 +249,11 @@ address   name
 0000214d  IntRegister                    
 000003ef  MPU6050_Calibrate              
 0000026d  MPU6050_Config                 
-000005d1  MPU6050_Read                   
+000005cd  MPU6050_Read                   
 00000701  MPU6050_Read_Angle             
 000008a9  MPU6050_Read_Comple_Angle      
 0000035f  MPU6050_Read_raw               
-00000511  MPU6050_Read_raw_Calibrated    
+00000509  MPU6050_Read_raw_Calibrated    
 00002303  ResetISR                       
 UNDEFED   SHT$$INIT_ARRAY$$Base          
 UNDEFED   SHT$$INIT_ARRAY$$Limit         
@@ -347,8 +347,8 @@ address   name
 0000026d  MPU6050_Config                 
 0000035f  MPU6050_Read_raw               
 000003ef  MPU6050_Calibrate              
-00000511  MPU6050_Read_raw_Calibrated    
-000005d1  MPU6050_Read                   
+00000509  MPU6050_Read_raw_Calibrated    
+000005cd  MPU6050_Read                   
 00000701  MPU6050_Read_Angle             
 000008a9  MPU6050_Read_Comple_Angle      
 00000ad1  asin                           

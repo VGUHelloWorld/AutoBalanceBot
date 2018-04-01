@@ -34,6 +34,17 @@ TIMER/TIMER.obj: ../TIMER/../I2C/../include.h
 TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 TIMER/TIMER.obj: ../TIMER/../MPU6050/MPU6050.h
 TIMER/TIMER.obj: ../TIMER/../TIMER/TIMER.h
+TIMER/TIMER.obj: ../TIMER/../UART/ustdlib.h
+TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
+TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h
+TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h
+TIMER/TIMER.obj: ../TIMER/../UART/uartstdio.h
+TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
+TIMER/TIMER.obj: ../TIMER/../UART/ftoa.h
+TIMER/TIMER.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdlib.h
+TIMER/TIMER.obj: ../TIMER/../UART/UART.h
+TIMER/TIMER.obj: ../TIMER/../MOTOR/MOTOR.h
+TIMER/TIMER.obj: ../TIMER/../PWM/PWM.h
 
 ../TIMER/TIMER.c: 
 ../TIMER/TIMER.h: 
@@ -69,3 +80,14 @@ C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
 ../TIMER/../MPU6050/MPU6050.h: 
 ../TIMER/../TIMER/TIMER.h: 
+../TIMER/../UART/ustdlib.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h: 
+../TIMER/../UART/uartstdio.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
+../TIMER/../UART/ftoa.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdlib.h: 
+../TIMER/../UART/UART.h: 
+../TIMER/../MOTOR/MOTOR.h: 
+../TIMER/../PWM/PWM.h: 
