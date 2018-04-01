@@ -18,7 +18,7 @@ struct PID
     double setPoint;
     double error;
     double lastError;
-    double sumValue;
+    double intergral;
 };
 
 extern void PID_init(struct PID *target,double kp, double ki, double kd, double setPoint);
