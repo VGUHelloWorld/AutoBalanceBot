@@ -47,6 +47,9 @@
 *.xml
 *.opt
 
+# Setting files
+.settings/
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
