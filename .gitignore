@@ -60,11 +60,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-/I2C/
-/MPU6050/
-/TIMER/
-/UART/
-/makefile
-/sources.mk
-/subdir_rules.mk
-/subdir_vars.mk
