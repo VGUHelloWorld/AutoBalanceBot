@@ -48,7 +48,7 @@
 *.opt
 
 # Setting files
-*.prefs
+org.eclipse.core.resources.prefs
 
 # Kernel Module Compile Results
 *.mod*
