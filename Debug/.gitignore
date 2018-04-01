@@ -1,0 +1,9 @@
+/I2C/
+/MPU6050/
+/TIMER/
+/UART/
+/makefile
+/objects.mk
+/sources.mk
+/subdir_rules.mk
+/subdir_vars.mk
