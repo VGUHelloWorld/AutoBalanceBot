@@ -39,7 +39,6 @@ void main(void)
     {
         if (end_loop) // Check if loop_time is reached
         {
-
             end_loop = false;
             MPU6050_Read_Comple_Angle(&pitch, &roll, &yaw, 0.98);
 
