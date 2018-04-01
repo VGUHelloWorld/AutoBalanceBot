@@ -34,6 +34,14 @@ MPU6050/MPU6050.obj: ../MPU6050/../I2C/../include.h
 MPU6050/MPU6050.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 MPU6050/MPU6050.obj: ../MPU6050/../MPU6050/MPU6050.h
 MPU6050/MPU6050.obj: ../MPU6050/../TIMER/TIMER.h
+MPU6050/MPU6050.obj: ../MPU6050/../UART/ustdlib.h
+MPU6050/MPU6050.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
+MPU6050/MPU6050.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h
+MPU6050/MPU6050.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h
+MPU6050/MPU6050.obj: ../MPU6050/../UART/uartstdio.h
+MPU6050/MPU6050.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
+MPU6050/MPU6050.obj: ../MPU6050/../UART/ftoa.h
+MPU6050/MPU6050.obj: ../MPU6050/../UART/UART.h
 
 ../MPU6050/MPU6050.c: 
 ../MPU6050/MPU6050.h: 
@@ -69,3 +77,11 @@ C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
 ../MPU6050/../MPU6050/MPU6050.h: 
 ../MPU6050/../TIMER/TIMER.h: 
+../MPU6050/../UART/ustdlib.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h: 
+../MPU6050/../UART/uartstdio.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
+../MPU6050/../UART/ftoa.h: 
+../MPU6050/../UART/UART.h: 

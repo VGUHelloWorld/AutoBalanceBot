@@ -33,6 +33,14 @@ I2C/I2C.obj: ../I2C/../I2C/I2C.h
 I2C/I2C.obj: ../I2C/../MPU6050/MPU6050.h
 I2C/I2C.obj: ../I2C/../MPU6050/../include.h
 I2C/I2C.obj: ../I2C/../TIMER/TIMER.h
+I2C/I2C.obj: ../I2C/../UART/ustdlib.h
+I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
+I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h
+I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h
+I2C/I2C.obj: ../I2C/../UART/uartstdio.h
+I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h
+I2C/I2C.obj: ../I2C/../UART/ftoa.h
+I2C/I2C.obj: ../I2C/../UART/UART.h
 I2C/I2C.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 
 ../I2C/I2C.c: 
@@ -68,4 +76,12 @@ C:/ti/TivaWare_C_Series-2.1.4.178/inc/hw_types.h:
 ../I2C/../MPU6050/MPU6050.h: 
 ../I2C/../MPU6050/../include.h: 
 ../I2C/../TIMER/TIMER.h: 
+../I2C/../UART/ustdlib.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h: 
+../I2C/../UART/uartstdio.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h: 
+../I2C/../UART/ftoa.h: 
+../I2C/../UART/UART.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
