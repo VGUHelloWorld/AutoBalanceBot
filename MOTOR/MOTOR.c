@@ -139,9 +139,9 @@ void Stop()
 void Motion_Control(int8_t motor_right_speed, int8_t motor_left_speed)
 {
     if (motor_right_speed > 0 && motor_left_speed > 0)
-        Go_Forward(motor_right_speed, motor_left_speed);
+        Go_Backward(motor_right_speed, motor_left_speed);
     else if (motor_right_speed < 0 && motor_left_speed < 0)
-        Go_Backward(-motor_right_speed, -motor_left_speed);
+        Go_Forward(-motor_right_speed, -motor_left_speed);
     else /*if (motor_right_speed == 0 && motor_left_speed == 0)*/
         Stop();
 }
