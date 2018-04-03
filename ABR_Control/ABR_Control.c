@@ -22,7 +22,7 @@ void ABR_Control(double *angle)
     {
         motorSpeed=100;
     }
-    else if (motorSpeed<100)
+    else if (motorSpeed<-100)
     {
         motorSpeed=-100;
     }
