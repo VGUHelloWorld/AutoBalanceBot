@@ -31,6 +31,8 @@ void main(void)
     I2C_Config("I2C1", false);
     MPU6050_Config(0x68, 1, 1);
     MPU6050_Calibrate(200);
+    UART_Config(1, 9600);
+    ABR_PID_Init();
 
 
     /*
@@ -42,12 +44,13 @@ void main(void)
         {
             end_loop = false;
             MPU6050_Read_Comple_Angle(&pitch, &roll, &yaw, 0.98);
-            if (pitch > (double)20)
+          /*  if (pitch > (double)20)
                 Motion_Control(80, 80);
             else if (pitch < (double)-20)
                 Motion_Control(-80, -80);
             else
-                Motion_Control(0, 0);
+                Motion_Control(0, 0);*/
+            ABR_Control(&pitch);
 
         } // end if(end_loop)
     } // end while(1)
