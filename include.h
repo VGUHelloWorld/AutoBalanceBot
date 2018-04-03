@@ -54,6 +54,9 @@
 #include "MOTOR/MOTOR.h"
 #include "PWM/PWM.h"
 
+#include "PID/PID.h"
+#include "ABR_Control/ABR_Control.h"
+
 // User-defined constants
 #define M_PI 3.14159265358979323846
 
