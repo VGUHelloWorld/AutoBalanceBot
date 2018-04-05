@@ -29,7 +29,7 @@ void main(void)
     TIMER_Config(freq);
     Motor_Config(700);
     ABR_PID_Init();
-    //UART_Config(1, 9600);
+    UART_Bluetooth_Setup(1, 9600);
     I2C_Config("I2C1", false);
     MPU6050_Config(0x68, 1, 1);
     MPU6050_Calibrate(200);
