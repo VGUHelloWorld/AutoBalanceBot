@@ -7,7 +7,7 @@
 #include "include.h"
 
 // System's frequency definition
-#define freq 50
+#define freq 100
 
 void main(void)
 {

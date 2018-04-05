@@ -13,7 +13,7 @@
 struct PID anglePID;
 struct PID speedPID;
 
-#define angle_Kp 15
+#define angle_Kp 0
 #define angle_Kd 0
 #define angle_Ki 0
 #define angle_setPoint 0
@@ -23,7 +23,7 @@ struct PID speedPID;
 #define speed_setPoint 0
 #define angle_Limit 10
 
-int8_t motorSpeed;
+int16_t motorSpeed;
 
 extern void ABR_PID_Init();
 extern void ABR_Control(double *angle);
