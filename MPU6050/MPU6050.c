@@ -145,6 +145,21 @@ void MPU6050_Calibrate(uint16_t num)
 }
 
 /*
+ * Set initial offsets values after calibration
+ * @param <int32_t> $a_x, $a_y, $a_z, $g_x, $g_y, $g_z sensor's offsets
+ * @return void
+ */
+void MPU6050_Calib_Set(int32_t a_x, int32_t a_y, int32_t a_z, int32_t g_x, int32_t g_y, int32_t g_z)
+{
+    accel_x_calib = a_x;
+    accel_y_calib = a_y;
+    accel_z_calib = a_z;
+    gyro_x_calib  = g_x;
+    gyro_y_calib  = g_y;
+    gyro_z_calib  = g_z;
+}
+
+/*
  * Read raw data from MPU6050, subtracted by the measured initial offsets
  * @param <int16_t*> $accel_x, $accel_y, $accel_z, $gyro_x, $gyro_y, $gyro_z, $temp
  *      pointers to storing variables

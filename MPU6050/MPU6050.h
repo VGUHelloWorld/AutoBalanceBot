@@ -19,6 +19,8 @@ static int16_t MPU6050_Buf_7_int16[7];
 
 extern void MPU6050_Config(uint8_t dev_addr, uint8_t gyro_FS_SEL, uint8_t accel_FS_SEL);
 extern void MPU6050_Calibrate(uint16_t num);
+extern void MPU6050_Calib_Set(int32_t a_x, int32_t a_y, int32_t a_z,
+                              int32_t g_x, int32_t g_y, int32_t g_z);
 extern void MPU6050_Read_raw(int16_t *accel_x, int16_t *accel_y, int16_t *accel_z,
                              int16_t *gyro_x, int16_t *gyro_y, int16_t *gyro_z,
                              int16_t *temp);
