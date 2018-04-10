@@ -8,12 +8,13 @@
 #include "PID.h"
 
 
-void PID_init(struct PID *target,double kp, double ki, double kd, double setPoint)
+void PID_init(struct PID *target,double kp, double ki, double kd, double setPoint, double i_limit)
 {
     target->Kd=kd;
     target->Ki=ki;
     target->Kp=kp;
     target->setPoint=setPoint;
+    target->i_limit=i_limit;
     target->error=0;
     target->lastError=0;
     target->intergral=0;

@@ -10,12 +10,16 @@
 
 void ABR_PID_Init()
 {
-    PID_init(&anglePID, angle_Kp, angle_Ki, angle_Kd, angle_setPoint);
-    PID_init(&speedPID, speed_Kp, speed_Ki, speed_Kd, speed_setPoint);
+    PID_init(&anglePID, angle_Kp, angle_Ki, angle_Kd, angle_setPoint,angle_i_limit);
+    PID_init(&speedPID, speed_Kp, speed_Ki, speed_Kd, speed_setPoint,speed_i_limit);
 }
 
 void ABR_Control(double *angle)
 {
+    if (abs(*angle)<balance_angle)
+    {
+        PID_Reset(&anglePID);
+    }
     double newAngleSetPoint= PID_Calculate(&speedPID, motorSpeed, speed_setPoint);
     motorSpeed=-PID_Calculate(&anglePID, *angle, newAngleSetPoint);
     if (motorSpeed>100)
