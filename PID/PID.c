@@ -28,7 +28,7 @@ void PID_Update_Gain(struct PID *target, double kp, double ki, double kd)
 
 void PID_Reset(struct PID *target)
 {
-    target->lastError=0;
+   // target->lastError=0;
     target->intergral=0;
 }
 
