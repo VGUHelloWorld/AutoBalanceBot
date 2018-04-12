@@ -24,7 +24,7 @@ struct PID speedPID;
 #define speed_setPoint 0
 #define speed_i_limit 200
 #define angle_Limit 10
-#define balance_angle 1
+#define balance_angle 0
 
 int16_t motorSpeed;
 

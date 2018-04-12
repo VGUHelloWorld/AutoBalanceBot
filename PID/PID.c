@@ -28,7 +28,7 @@ void PID_Update_Gain(struct PID *target, double kp, double ki, double kd)
 
 void PID_Reset(struct PID *target)
 {
-   // target->lastError=0;
+    //target->lastError=0;
     target->intergral=0;
 }
 
@@ -39,7 +39,7 @@ double PID_Calculate(struct PID *target, double newValue, double setValue)
     target->setPoint=setValue;
 
     target->error= (target->setPoint-newValue);
-    target->intergral+=target->error*loop_time;
+    target->intergral+=target->error;
     double derivative = (target->error-target->lastError)/loop_time;
 
     finalOutput=target->Kp*target->error + target->Kd*derivative + target->Ki*target->intergral;
