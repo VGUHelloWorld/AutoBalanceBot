@@ -40,6 +40,14 @@ double PID_Calculate(struct PID *target, double newValue, double setValue)
 
     target->error= (target->setPoint-newValue);
     target->intergral+=target->error;
+    if (target->intergral>target->i_limit)
+    {
+        target->integral=target->i_limit;
+    }
+    else if (target->intergral<-target->i_limit)
+    {
+        target->integral=-target->i_limit;
+    }
     double derivative = (target->error-target->lastError)/loop_time;
 
     finalOutput=target->Kp*target->error + target->Kd*derivative + target->Ki*target->intergral;
