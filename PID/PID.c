@@ -17,7 +17,7 @@ void PID_init(struct PID *target,double kp, double ki, double kd, double setPoin
     target->i_limit=i_limit;
     target->error=0;
     target->lastError=0;
-    target->intergral=0;
+    target->integral=0;
 }
 void PID_Update_Gain(struct PID *target, double kp, double ki, double kd)
 {
@@ -29,7 +29,7 @@ void PID_Update_Gain(struct PID *target, double kp, double ki, double kd)
 void PID_Reset(struct PID *target)
 {
     //target->lastError=0;
-    target->intergral=0;
+    target->integral=0;
 }
 
 double PID_Calculate(struct PID *target, double newValue, double setValue)
@@ -39,18 +39,18 @@ double PID_Calculate(struct PID *target, double newValue, double setValue)
     target->setPoint=setValue;
 
     target->error= (target->setPoint-newValue);
-    target->intergral+=target->error;
-    if (target->intergral>target->i_limit)
+    target->integral+=target->error;
+    if (target->integral>target->i_limit)
     {
         target->integral=target->i_limit;
     }
-    else if (target->intergral<-target->i_limit)
+    else if (target->integral<-target->i_limit)
     {
         target->integral=-target->i_limit;
     }
     double derivative = (target->error-target->lastError)/loop_time;
 
-    finalOutput=target->Kp*target->error + target->Kd*derivative + target->Ki*target->intergral;
+    finalOutput=target->Kp*target->error + target->Kd*derivative + target->Ki*target->integral;
     target->lastError=target->error;
 
     return finalOutput;

@@ -18,7 +18,7 @@ struct PID
     double setPoint;
     double error;
     double lastError;
-    double intergral;
+    double integral;
     double i_limit;
 };
 
