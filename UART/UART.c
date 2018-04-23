@@ -123,7 +123,7 @@ void UART_Bluetooth_Receive()
 void UART_Send_To_Graph(double value)
 {
     char UART_string_buff[12];
-    UARTprintf("%7s", ftoa(value,&UART_string_buff[0],2));
+    UARTprintf("*%7s", ftoa(value,&UART_string_buff[0],2));
 }
 
 
