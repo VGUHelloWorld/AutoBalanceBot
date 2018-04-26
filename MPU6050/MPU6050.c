@@ -259,7 +259,8 @@ void MPU6050_Read_Comple_Angle(double *pitch, double *roll, double *yaw, double 
 
     // Calculate Accel angles using asin function
     double total_vector = sqrt((double)accel_x*accel_x + (double)accel_y*accel_y + (double)accel_z*accel_z);
-    double accel_pitch =  asin((double)accel_x/total_vector)*(180.0f/(double)M_PI);  // *180/M_PI to convert from rad to deg
+    //double accel_pitch =  asin((double)accel_x/total_vector)*(180.0f/(double)M_PI);
+    double accel_pitch = -atan2(-accel_x, sqrt(accel_y*accel_y + accel_z*accel_z))*(180.0f/(double)M_PI);                 // *180/M_PI to convert from rad to deg
     double accel_roll  = -asin((double)accel_y/total_vector)*(180.0f/(double)M_PI);
 
     // Add integrated Gyro's measurement to current Angles
