@@ -18,6 +18,7 @@ void main(void)
      */
     end_loop = true;
     double pitch = 0.0, roll = 0.0, yaw = 0.0;
+    UART_Send_Counter=0;
 
 
     /*
@@ -45,13 +46,17 @@ void main(void)
         {
             end_loop = false;
             MPU6050_Read_Comple_Angle(&pitch, &roll, &yaw, 0.98);
-          /*  if (pitch > (double)20)
-                Motion_Control(80, 80);
-            else if (pitch < (double)-20)
-                Motion_Control(-80, -80);
-            else
-                Motion_Control(0, 0);*/
             ABR_Control(&pitch);
+
+            /*
+             * Send pitch values to graph (bluetooth)
+             */
+            UART_Send_Counter++;
+            if (UART_Send_Counter==UART_Send_AfterNLoops)
+            {
+                UART_Send_To_Graph(pitch);
+                UART_Send_Counter=0;
+            }
 
         } // end if(end_loop)
     } // end while(1)
